@@ -44,17 +44,17 @@ def render_menu(tree, active_item):
     def render_item(item, is_root=False):
         active_class = 'active' if is_active(item) else ''
         children_html = ''.join(render_item(child) for child in item['children'])
-        children_style = 'display: block;' if is_active(item) or is_root else 'display: none;'
+        children_class = 'hidden' if not is_root else ''
 
         return f"""
             <li class="{active_class}">
-                <a href="{item['item'].get_url()}" onclick="toggleMenu(event)">{item['item'].name}</a>
-                <ul style="{children_style}">
+                <a href="{item['item'].get_url()}" class="menu-link">{item['item'].name}</a>
+                <ul class="{children_class}">
                     {children_html}
                 </ul>
             </li>
         """
 
-    return f"<ul>{''.join(render_item(item, is_root=True) for item in tree)}</ul>"
+    return f"<ul class='root-menu'>{''.join(render_item(item, is_root=True) for item in tree)}</ul>"
 
 register.simple_tag(takes_context=True)(draw_menu)

@@ -1,0 +1,19 @@
+{% load menu_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu Example</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        {% draw_menu 'main_menu' %}
+        {% draw_menu 'main2_menu' %}
+    </header>
+    <main>
+        <h1>Home Page</h1>
+        <p>Welcome to the home page!</p>
+    </main>
+</body>
+</html>
